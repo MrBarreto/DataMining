@@ -81,12 +81,9 @@ for subfolder in os.listdir(main_folder_path):
         else:
             print(f"Nome de subpasta inválido para nome de tabela: {table_name}")
     for arquivo in os.listdir(subfolder_path):
-        with open(arquivo, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-        
-        
-    
-    
-
+        json_file_path = os.path.join(subfolder_path, arquivo)
+        with open(json_file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)   
+            insert_data(conn, table_name, data)
 # Fechar a conexão
 conn.close()
